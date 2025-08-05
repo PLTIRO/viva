@@ -1,0 +1,55 @@
+$(document).ready(function() {
+  let loading = false;
+  let rotated = 0;
+
+  const chances = [0, 3]; // índices que correspondem às posições da roleta
+  const optionsLength = 7; // número de segmentos na roleta
+  const angleOption = 360 / optionsLength;
+
+  function habilitarBotoes() {
+    loading = false;
+    $('#spin').prop('disabled', false).text('GIRAR');
+    $('#spin-bottom').prop('disabled', false).text('GIRE PARA GANHAR');
+  }
+
+  function showFailurePopup() {
+    alert("Você não ganhou dessa vez. Tente novamente!");
+  }
+
+  function showSuccessPopup() {
+    alert("Parabéns! Você ganhou!");
+  }
+
+  window.spinRoulette = function() {
+    if (loading) return;
+    loading = true;
+
+    const num = chances[rotated % chances.length];
+    const rotationDegrees = (360 * 3) - (angleOption * num);
+
+    const $roleta = $('.roleta');
+    $roleta.removeClass('animar').css('transform', 'rotate(0deg)');
+    void $roleta[0].offsetWidth; // força reflow
+
+    $roleta.css('--rotation', `${rotationDegrees}deg`);
+    $roleta.addClass('animar');
+
+    $('#spin').prop('disabled', true).text('GIRANDO...');
+    $('#spin-bottom').prop('disabled', true).text('GIRANDO...');
+
+    setTimeout(() => {
+      if (rotated === 0) {
+        showFailurePopup();
+      } else {
+        showSuccessPopup();
+      }
+      habilitarBotoes();
+    }, 5500);
+
+    rotated++;
+  }
+
+  // Liga os botões para girar a roleta
+  $('#spin').on('click', spinRoulette);
+  $('#spin-bottom').on('click', spinRoulette);
+});

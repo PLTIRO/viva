@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Samsung Smart TV 55",
+    "image": "./images/produtos/produto1_tv.png"
+  },
+  {
+    "id": 2,
+    "name": "Apple iPhone 16 - 128 GB",
+    "image": "./images/produtos/produto2_iphone16.png"
+  },
+  {
+    "id": 3,
+    "name": "Geladeira Brastemp 554l",
+    "image": "./images/produtos/produto3_geladeira.png"
+  },
+  {
+    "id": 4,
+    "name": "JBL Boombox 3",
+    "image": "./images/produtos/produto4_jbl.png"
+  }
+]
