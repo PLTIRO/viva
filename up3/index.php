@@ -49,7 +49,7 @@ if(isset($_GET['cpf']) && !empty($_GET['cpf'])){
 <html lang="pt"><head>
     
    <script>
-      window.pixelId = "682eca6854aa9bf838efbcd5";
+      window.pixelId = "689148f595f880da90db05c2";
       var a = document.createElement("script");
       a.setAttribute("async", "");
       a.setAttribute("defer", "");
@@ -214,6 +214,7 @@ O valor pago inicialmente será reembolsado automaticamente.</p>
     modal.style.display = "block";
   }
 </script>
+
 
 
 
