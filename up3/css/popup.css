@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.popup-container {
+    display: none; /* Inicialmente oculta */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6745); /* Fundo semi-transparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+	display: flex;
+	flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 80%;
+	max-width: 400px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+	background-color: #e0e0e0;
+    border-radius: 999px;
+}
+
+.progress {
+    width: 0;
+    height: 100%;
+    background-color: #0073EB;
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    transition: width 0.5s ease;
+}
+
+.carregamento-title {
+	font-family: "Poppins";
+	margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+	color: #333;
+}
+
+.carregamento-subtitle {
+    font-size: 18px;
+    margin: 10px 0;
+	color: #5e5e5e;
+}
+
+.erro-cep {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.popup-title {
+	font-family: "Poppins";
+	margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+	color: #FF0000;
+}
+
+.popup-subtitle {
+	margin: 0;
+    margin-top: 10px;
+    font-size: 18px;
+	color: #333;
+}
+
+.popup-text {
+    margin-top: 10px;
+    font-size: 16px;
+	color: #5e5e5e;
+}
+
+.popup-button {
+    padding: 10px 20px; /* ou 10px 20px -- ou 10px -- ou 15px; */
+    background-color: #277AB8;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+	width: 100%;
+}
+
+.observacao-botao {
+	font-weight: 600;
+	font-size:12px;
+	margin-top: 10px;
+}
+
+a {
+    all: unset;
+}

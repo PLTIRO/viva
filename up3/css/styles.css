@@ -1,0 +1,133 @@
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+.button-container {
+	width: 90%;
+    max-width: 300px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.styled-button {
+    width: 100%;
+    display: flex;
+	flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+
+.styled-button2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #277AB8;
+	text-transform: uppercase;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.button-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.button-title2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: 'GellixSemiBold';
+    color: white;
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale(0.95);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.95);
+    }
+  }
+
+.icon-container {
+    background-color: #ffc107;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-container .material-symbols-outlined {
+    color: #fff;
+    font-size: 70px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Garante que os itens estejam nos extremos e no centro */
+    align-items: center; /* Centraliza verticalmente os itens */
+    background-color: #F5F3F0; /* Cor de fundo do navbar */
+	height: 48px;
+	border-bottom: 1px solid #ffc107!important;
+}
+
+.logo-central {
+    flex-grow: 0; /* Não permite que os itens cresçam */
+    flex-shrink: 0; /* Não permite que os itens encolham */
+    flex-grow: 1; /* Permite que a logo central cresça e ocupe todo o espaço restante */
+    text-align: center; /* Centraliza a logo no espaço disponível */
+}
+
+.logo-central img {
+    height: 25px; /* Ajuste a altura conforme necessário */
+}
+
+.material-symbols-outlined {
+    font-size: 24px; /* Ajuste o tamanho do ícone conforme necessário */
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+p {
+    font-size: 18px;
+    color: #5e5e5e;
+    font-weight: bold;
+    font-family: 'GellixMedium';
+}
+
+.ad1 {
+    display: block;
+    margin: 1em auto;
+    background-color: rgb(226, 226, 226);
+    width: 90%;
+    border-radius: 15px;
+	max-width: 700px;
+}

